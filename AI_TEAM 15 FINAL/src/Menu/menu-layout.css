@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --gold: #ffc02d;
+    --dark-bg: rgba(10, 10, 10, 0.98);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    width: 100vw; height: 100vh;
+    background: url('../../Assets/Image/background_Home.png') center/cover no-repeat;
+    font-family: 'Roboto', sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+}
+
+.background-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); z-index: 1;
+}
+
+.menu-wrapper { position: relative; z-index: 2; width: 400px; text-align: center; }
+
+.title-container h1 {
+    font-family: 'Orbitron', sans-serif; font-size: 3rem; color: #fff;
+    margin-bottom: 5px;
+}
+
+.title-container h2 {
+    font-family: 'Orbitron', sans-serif; font-size: 1rem; color: var(--gold);
+    letter-spacing: 5px; margin-bottom: 30px;
+}
+
+.menu-container { display: flex; flex-direction: column; gap: 15px; }
+
+.menu-button {
+    padding: 18px; border: none; border-radius: 8px;
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.1rem;
+    color: white; cursor: pointer; transition: 0.2s;
+}
+
+.pvp-btn { background: linear-gradient(180deg, #d32f2f, #9a0007); }
+.bot-btn { background: linear-gradient(180deg, #1976d2, #004ba0); }
+.rules-btn { background: linear-gradient(180deg, #f57c00, #e65100); }
+
+.menu-button:hover { transform: scale(1.03); filter: brightness(1.2); }
+
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh; background: rgba(0,0,0,0.85);
+    z-index: 100; justify-content: center; align-items: center;
+}
+
+.setup-card, .rules-card {
+    background: var(--dark-bg); border: 2px solid var(--gold);
+    border-radius: 12px; width: 480px; padding: 30px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9); z-index: 101;
+}
+
+.card-header h2 {
+    color: var(--gold); font-family: 'Orbitron', sans-serif;
+    text-align: center; margin-bottom: 25px; font-size: 1.5rem;
+}
+
+.setting-row { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 15px; margin-bottom: 15px; }
+.setting-row label { color: #aaa; font-size: 0.85rem; font-weight: 700; text-align: left; }
+
+.styled-select {
+    background: #222; color: #fff; border: 1px solid #444;
+    padding: 10px; border-radius: 5px; font-size: 0.9rem; width: 100%;
+}
+
+.card-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+
+.confirm-btn, .cancel-btn {
+    padding: 12px; border: none; border-radius: 5px;
+    font-weight: 700; cursor: pointer; font-family: 'Orbitron', sans-serif;
+}
+
+.confirm-btn { background: linear-gradient(180deg, #d32f2f, #9a0007); color: white; }
+.cancel-btn { background: #333; color: white; }
+
+.rules-content { max-height: 450px; overflow-y: auto; text-align: left; padding-right: 15px; }
+.rules-content h3 { color: var(--gold); margin: 20px 0 10px 0; font-size: 1.1rem; }
+.rules-content p { color: #ccc; font-size: 0.9rem; line-height: 1.6; margin-bottom: 12px; }
+.rules-content strong { color: var(--gold); }
+.rules-content ul { margin-left: 20px; margin-bottom: 10px; }
+.rules-content li { color: #bbb; font-size: 0.85rem; margin-bottom: 5px; list-style: disc; }
+
+.rules-divider { border: 0; height: 1px; background: rgba(255, 192, 45, 0.3); margin: 20px 0; }
+
+.close-rules-btn { width: 100%; margin-top: 20px; padding: 15px; background: #d32f2f; color: white; border: none; cursor: pointer; font-weight: 700; }
+
+.loading-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh; background: rgba(0,0,0,0.95);
+    z-index: 9999; justify-content: center; align-items: center;
+}
+
+.loading-content { width: 80%; max-width: 700px; text-align: center; }
+.loading-content h2 { color: var(--gold); font-family: 'Orbitron', sans-serif; margin-bottom: 20px; }
+.control-img { width: 100%; max-height: 65vh; object-fit: contain; border-radius: 8px; }
+
+.sound-icon { position: absolute; top: 20px; right: 20px; width: 45px; cursor: pointer; z-index: 10; }
+.rules-content::-webkit-scrollbar { width: 6px; }
+.rules-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }

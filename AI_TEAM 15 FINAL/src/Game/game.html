@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic 8 Ball Pool - Team2</title>
+    <link rel="stylesheet" href="game-layout.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div id="game-table" class="billiards-table">
+            <div class="top-overlay-ui">
+                <button id="homeBtn" class="ui-btn btn-danger">Home</button>
+                <div class="player-info-hud">
+                    <div class="hud-box" id="player1">
+                        <img class="avatar" src="../../Assets/Image/avatar.jpg" alt="avatar">
+                        <div class="stats">
+                            <div class="name" id="player1_name">Player 1</div>
+                            <div class="score" id="player1_balls_list" style="display: flex; gap: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-box" id="turn-timer">30</div>
+
+                    <div class="hud-box" id="player2">
+                        <div class="stats" style="text-align: right;">
+                            <div class="name" id="player2_name">Computer</div>
+                            <div class="score" id="player2_balls_list" style="display: flex; gap: 4px; justify-content: flex-end;"></div>
+                        </div>
+                        <img class="avatar" src="../../Assets/Image/avatar.jpg" alt="avatar">
+                    </div>
+                </div>
+                <div id="pause-button-container" style="margin-left: 20px;">
+                    <div id="pause-icon" class="clickable">&#8943;</div>
+                </div>
+            </div>
+
+            <div class="felt-playing-area">
+                <canvas id="myCanvas"></canvas>
+                <div id="power-bar-container">
+                    <div id="power-bar-fill"></div>
+                </div>
+            </div>
+            
+            <div id="spin-control-container">
+                <div id="spin-ball">
+                    <div id="spin-dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="displayWinner" class="winner-popup">
+        <h1>GAME OVER</h1>
+        <h2><span id="namePlayerWinner"></span> Winner!</h2>
+        <button id="btnRestartWin" class="ui-btn btn-success" style="margin-top: 20px;">Play Again</button>
+    </div>
+
+    <div id="pause-overlay">
+        <div id="pause-menu">
+            <h2>Game Paused</h2>
+            <button id="btn-resume" class="ui-btn btn-success">Resume</button>
+            <button id="btn-playagain" class="ui-btn btn-danger">Play Again</button>
+        </div>
+    </div>
+
+    <script src="../../ModelScript/Vector2D.js"></script>
+    <script src="../../ModelScript/Stick.js"></script>
+    <script src="../../ModelScript/PoolGame.js"></script>
+    <script src="../../ModelScript/MyCanvas.js"></script>
+    <script src="../../ModelScript/GamePolicy.js"></script>
+    <script src="../../ModelScript/GameWorld.js"></script>
+    <script src="../../ModelScript/Bot.js"></script>
+    <script src="../../ModelScript/Board.js"></script>
+    <script src="../../ModelScript/Ball.js"></script>
+    <script src="../../ModelScript/Assets.js"></script>
+    <script src="../../CommonHelper/Helper/simulateShotHelper.js"></script>
+    <script src="../../CommonHelper/Model/algorithm.js"></script>
+    <script src="game-script.js"></script>
+    <script>new PoolGame().init();</script>
+</body>
+</html>

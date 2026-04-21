@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Ball Pool - Professional Edition</title>
+    <link rel="stylesheet" href="menu-layout.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <div class="menu-wrapper">
+        <div class="title-container">
+            <h1>8 BALL POOL</h1>
+            <h2>REALISTIC 3D</h2>
+        </div>
+
+        <div class="menu-container">
+            <button class="menu-button pvp-btn" onclick="openSetup('pvp')">PLAYER VS PLAYER</button>
+            <button class="menu-button bot-btn" onclick="openSetup('bot')">PLAYER VS COMPUTER</button>
+            <button class="menu-button rules-btn" onclick="showRules()">RULES</button>
+        </div>
+    </div>
+
+    <div id="setup-modal" class="modal-overlay">
+        <div class="setup-card">
+            <div class="card-header">
+                <h2 id="setup-title">THIẾT LẬP TRẬN ĐẤU</h2>
+            </div>
+            
+            <div class="card-body">
+                <div class="setting-row">
+                    <label>CHẾ ĐỘ CHƠI</label>
+                    <select id="gameTypeSelect" class="styled-select" onchange="checkGameType()">
+                        <option value="8ball">8-BALL</option>
+                        <option value="9ball">9-BALL</option>
+                    </select>
+                </div>
+
+                <div class="setting-row">
+                    <label>HỖ TRỢ NGẮM</label>
+                    <select id="aimSelect" class="styled-select">
+                        <option value="off">TẮT</option>
+                        <option value="basic" selected>CƠ BẢN</option>
+                        <option value="full">GIAN LẬN</option>
+                    </select>
+                </div>
+
+                <div id="rule-setting" class="setting-row">
+                    <label>LUẬT GỌI LỖ</label>
+                    <select id="callModeSelect" class="styled-select">
+                        <option value="none" selected>KHÔNG GỌI</option>
+                        <option value="8ballOnly">CHỈ BI 8</option>
+                        <option value="all">LUẬT QUỐC TẾ</option>
+                    </select>
+                </div>
+
+                <div id="bot-setting" class="setting-row" style="display: none;">
+                    <label>TRÌNH ĐỘ MÁY</label>
+                    <select id="diffSelect" class="styled-select">
+                        <option value="easy">GÀ MỜ</option>
+                        <option value="normal" selected>TAY CƠ</option>
+                        <option value="hard">BẬC THẦY</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="confirm-btn" onclick="confirmStart()">BẮT ĐẦU</button>
+                <button class="cancel-btn" onclick="closeSetup()">HỦY BỎ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rules-modal" class="modal-overlay">
+        <div class="rules-card">
+            <div class="card-header"><h2>LUẬT CHƠI</h2></div>
+            <div class="rules-content">
+                <section>
+                    <h3>QUY TẮC CHUNG</h3>
+                    <ul>
+                        <li><strong>Cú đánh hợp lệ:</strong> Bi cái chạm đúng bi mục tiêu trước. Sau đó có ít nhất 1 bi vào lỗ hoặc có ít nhất 1 bi chạm băng.</li>
+                        <li><strong>Lỗi (foul):</strong> Nếu xảy ra lỗi, đối thủ được ball-in-hand (đặt bi cái ở vị trí bất kỳ).</li>
+                    </ul>
+                </section>
+                <hr class="rules-divider">
+                <section>
+                    <h3>8-BALL</h3>
+                    <ul>
+                        <li><strong>Mục tiêu:</strong> Người chơi phải đánh hết nhóm bi của mình: Bi trơn (1–7) hoặc bi sọc (9–15). Sau đó đánh bi số 8 để thắng.</li>
+                        <li><strong>Trạng thái bàn:</strong> Sau cú phá, nếu không có bi vào lỗ &rarr; bàn mở. Khi một người đánh hợp lệ và đưa bi vào &rarr; xác định nhóm bi.</li>
+                        <li><strong>Cú đánh hợp lệ:</strong> Bi cái phải chạm bi thuộc nhóm của mình trước. Sau đó có bi vào lỗ hoặc có ít nhất 1 bi chạm băng.</li>
+                        <li><strong>Luật đánh bi số 8:</strong> Chỉ được đánh khi đã hết bi nhóm. Thắng khi đưa bi 8 vào lỗ.</li>
+                        <li><strong>Lỗi (foul):</strong> Chạm sai bi trước. Không có bi chạm băng hoặc vào lỗ. Bi cái rơi lỗ.</li>
+                        <li><strong>Thua ngay lập tức khi:</strong> Đánh bi 8 khi chưa hết bi nhóm. Đánh bi 8 làm rơi bi cái.</li>
+                        <li><strong>Bổ sung chế độ:</strong><br>
+                            - Gọi lỗ bi 8: Phải bắn bi 8 vào đúng ô đã gọi.<br>
+                            - Gọi lỗ mọi bi: Sau cú phá, phải gọi lỗ trước khi bắn.
+                        </li>
+                    </ul>
+                </section>
+                <hr class="rules-divider">
+                <section>
+                    <h3>9-BALL</h3>
+                    <ul>
+                        <li><strong>Mục tiêu:</strong> Đưa bi số 9 vào lỗ hợp lệ để thắng.</li>
+                        <li><strong>Quy tắc lượt đánh:</strong> Luôn phải đánh bi có số nhỏ nhất trên bàn trước.</li>
+                        <li><strong>Cú đánh hợp lệ:</strong> Bi cái phải chạm bi số nhỏ nhất trước. Sau đó có bi vào lỗ hoặc có ít nhất 1 bi chạm băng.</li>
+                        <li><strong>Luật phá:</strong> Phải chạm bi số 1 trước. Sau khi phá có ít nhất 1 bi vào lỗ hoặc ít nhất 4 bi chạm băng.</li>
+                        <li><strong>Điều kiện thắng:</strong> Đưa bi số 9 vào lỗ hợp lệ. Có thể thắng sớm bằng combo: Chạm đúng bi nhỏ nhất trước &rarr; bi 9 vào lỗ.</li>
+                        <li><strong>Lỗi (foul):</strong> Không chạm bi nhỏ nhất trước. Không có bi chạm băng hoặc vào lỗ. Bi cái rơi lỗ.</li>
+                    </ul>
+                </section>
+            </div>
+            <button class="close-rules-btn" onclick="hideRules()">ĐÓNG</button>
+        </div>
+    </div>
+
+    <img id="sound-icon" src="../../Assets/Image/mute_button_hover.png" class="sound-icon" onclick="toggleSound()">
+    <audio id="background-music" loop><source src="../../Assets/Sounds/sound_Home.mp3" type="audio/mp3"></audio>
+
+    <div id="control-container" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <h2>LOADING...</h2>
+            <img src="../../Assets/Image/control_game.png" alt="Controls" class="control-img">
+        </div>
+    </div>
+
+    <script src="menu-script.js"></script>
+</body>
+</html>
